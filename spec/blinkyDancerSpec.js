@@ -1,7 +1,7 @@
 describe('blinkyDancer', function() {
 
   var blinkyDancer, clock;
-  var timeBetweenSteps = 100000;
+  var timeBetweenSteps = 100;
 
   beforeEach(function() {
     clock = sinon.useFakeTimers();
@@ -40,7 +40,7 @@ describe('myDancer', function() {
 
   beforeEach(function() {
     clock = sinon.useFakeTimers();
-    myDancer = new MyDancer(800, 180, timeBetweenSteps);
+    myDancer = new BabyDancer(800, 180, timeBetweenSteps);
   });
 
   it('should have a jQuery $node object', function() {
@@ -50,7 +50,7 @@ describe('myDancer', function() {
   it('should have a step function that makes its node blink', function() {
     sinon.spy(myDancer.$node, 'toggle');
     myDancer.step();
-    expect(myDancer.$node.toggle.called).to.be.true;
+    expect(myDancer.$node.toggle.called).to.be.false;
   });
 
   describe('dance', function() {
@@ -67,3 +67,39 @@ describe('myDancer', function() {
     });
   });
 });
+
+describe('snakeDancer', function() {
+
+  var myDancer, clock;
+  var timeBetweenSteps = 100;
+
+  beforeEach(function() {
+    clock = sinon.useFakeTimers();
+    myDancer = new KillSnake(800, 180, timeBetweenSteps);
+  });
+
+  it('should have a jQuery $node object', function() {
+    expect(myDancer.$node).to.be.an.instanceof(jQuery);
+  });
+
+  it('should not have a step function that makes its node blink', function() {
+    sinon.spy(myDancer.$node, 'toggle');
+    myDancer.step();
+    expect(myDancer.$node.toggle.called).to.be.false;
+  });
+
+  describe('dance', function() {
+    it('should call step at least once per second', function() {
+      sinon.spy(myDancer, 'step');
+      expect(myDancer.step.callCount).to.be.equal(0);
+      clock.tick(timeBetweenSteps); // ? it seems an extra tick is necessary...
+      // clock.tick(timeBetweenSteps);
+
+      expect(myDancer.step.callCount).to.be.equal(1);
+      clock.tick(timeBetweenSteps);
+
+      expect(myDancer.step.callCount).to.be.equal(2);
+    });
+  });
+});
+

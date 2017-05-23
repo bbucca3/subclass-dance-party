@@ -28,9 +28,10 @@ $(document).ready(function() {
       Math.random() * 1000
     );
     $('body').append(dancer.$node);
+    dancers.push(dancer.$node);
   });
   
-  $('.addMyDancerButton').on('click', function(event) {
+  $('.addBabyDancerButton').on('click', function(event) {
     var dancerMakerFunctionName = $(this).data('dancer-maker-function-name');
 
     // get the maker function for the kind of dancer we're supposed to make
@@ -44,6 +45,26 @@ $(document).ready(function() {
       Math.random() * 1000
     );
     $('body').append(mydancer.$node);
+    dancers.push(mydancer.$node);
   });
+
+  $('.addKillSnakeButton').on('click', function(event) {
+    var dancerMakerFunctionName = $(this).data('dancer-maker-function-name');
+
+      // get the maker function for the kind of dancer we're supposed to make
+    var snakeMakerFunction = window[dancerMakerFunctionName];
+
+      // make another dancer with a random position
+
+    var mydancer = new snakeMakerFunction(
+      $("body").height() * Math.random(),
+      $("body").width() * Math.random(),
+      Math.random() * 1000
+    );
+    $('body').append(mydancer.$node);
+
+    dancers.push(mydancer.$node);
+  });
+
 });
 
