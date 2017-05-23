@@ -28,7 +28,8 @@ $(document).ready(function() {
       Math.random() * 1000
     );
     $('body').append(dancer.$node);
-    dancers.push(dancer.$node);
+    // add to array
+    window.dancers.push(dancer.$node);
   });
   
   $('.addBabyDancerButton').on('click', function(event) {
@@ -45,7 +46,8 @@ $(document).ready(function() {
       Math.random() * 1000
     );
     $('body').append(mydancer.$node);
-    dancers.push(mydancer.$node);
+    // add to array
+    window.dancers.push(mydancer.$node);
   });
 
   $('.addKillSnakeButton').on('click', function(event) {
@@ -62,8 +64,19 @@ $(document).ready(function() {
       Math.random() * 1000
     );
     $('body').append(mydancer.$node);
+    // add to array
+    window.dancers.push(mydancer.$node);
+  });
 
-    dancers.push(mydancer.$node);
+  $('.lineUpButton').on('click', function(event) {
+    
+    for (let i = 0; i < window.dancers.length; i++) {
+      // window.dancers[i].css({left: 80 }, 500);
+      window.dancers[i].animate({left: 80 }, 500);
+
+    }
+
+
   });
 
 });
