@@ -26,6 +26,8 @@ Dancer.prototype.setPosition = function(top, left) {
     // Use css top and left properties to position our <span> tag
     // where it belongs on the page. See http://api.jquery.com/css/
     //
+  // debugger
+  //console.log('setting position to ', top, left);
   var styleSettings = {
     top: top,
     left: left
