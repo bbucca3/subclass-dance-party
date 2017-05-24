@@ -69,12 +69,21 @@ $(document).ready(function() {
   });
 
   $('.lineUpButton').on('click', function(event) {
-    
+    var angle = 0;
+
     for (let i = 0; i < window.dancers.length; i++) {
+
+      setInterval(function(){
+        angle += 3;
+        $(window.dancers[i]).rotate(angle);
+      } , 50);
       // window.dancers[i].css({left: 80 }, 500);
-      window.dancers[i].animate({left: 80 }, 500);
+      window.dancers[i].animate({left: 100 }, {duration: 1000});
 
     }
+
+
+    
 
 
   });
