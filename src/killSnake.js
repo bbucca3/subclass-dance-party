@@ -10,6 +10,11 @@ var KillSnake = function(top, left, timeBetweenSteps) {
     //alert("clicked a baby");    
     $(this).fadeOut("fast");
   });
+
+  this.$node.hover(function() {
+    $( this ).fadeOut( 100 );
+    //$( this ).fadeIn( 500 );
+  });
 };
 
 KillSnake.prototype = Object.create(Dancer.prototype);
